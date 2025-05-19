@@ -1,0 +1,20 @@
+import React from 'react'
+import MainBanner from '../components/MainBanner'
+import Homeslider from '../components/Homeslider'
+import mainImage from '../Images/gutwellbg.png'
+import DataGutWell from '../components/DataGutWell'
+import mainImage1 from '../Images/ourstorybg.png'
+import mainImage2 from '../Images/redvalbg.png'
+import mainImage3 from '../Images/Uricbg.png'
+import mainImage4 from '../Images/DW-01.png'
+function PGetwell() {
+  return (
+    <>
+       <MainBanner images={[mainImage, mainImage1, mainImage2, mainImage3, mainImage4]}/>
+       <Homeslider/>
+       <DataGutWell/>
+    </>
+  )
+}
+
+export default PGetwell
