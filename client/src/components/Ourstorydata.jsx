@@ -6,9 +6,15 @@ function Ourstorydata() {
     <div class="bg-white text-[#0a3e66] flex justify-center px-5">
         <div class="max-w-5xl py-10">
             <h1 class="font-montserrat font-bold text-4xl sm:text-5xl text-center mb-8 sm:mb-10">OUR STORY</h1>
-            <p class="font-opensans font-semibold text-lg sm:text-xl leading-relaxed sm:leading-loose tracking-tight text-justify">
-                Welcome to Daily Waters, where we bring innovation to hydration with our convenient water infusion dip bags. Our products are designed to effortlessly enhance your daily water intake, offering not just refreshing taste but a multitude of health benefits. Simply dip our infusion bags into your water, and experience the transformation as they infuse your drink with delicious flavors while delivering essential nutrients. From aiding in blood pressure and blood sugar control to detoxifying the body and improving digestion, our infusion bags are crafted to support your overall well-being. Say goodbye to plain water and hello to a refreshing and healthful hydration experience with Daily Waters infusion dip bags.
-            </p>
+           <div class="font-opensans font-semibold text-lg sm:text-xl leading-relaxed sm:leading-loose tracking-tight text-justify">
+                <ul class="list-disc  space-y-2">
+                    <li>Welcome to Daily Waters, where we transform everyday hydration into a flavorful and health-boosting experience. Born from a simple idea — to make drinking water both enjoyable and beneficial — our infusion dip bags are designed for people who want more from their daily sip.</li>
+                    <li>Crafted with care using natural herbs, fruits, and botanicals, our infusion bags deliver not just taste, but real wellness benefits. With no artificial additives and a focus on purity, each bag infuses your water with essential nutrients that help support digestion, blood pressure control, blood sugar balance, and natural detoxification.</li>
+                    <li>Using them is as simple as it gets: just dip, infuse, and sip. Whether you're at home, in the office, hitting the gym, or traveling, Daily Waters is your go-to companion for convenient, clean, and revitalizing hydration.</li>
+                    <li>Choose from a variety of blends — from calming lavender to zesty citrus — each curated to match your mood and health goals. And with our eco-friendly packaging and commitment to sustainability, every sip also supports a healthier planet.</li>
+                    <li>Say goodbye to plain water, and hello to a new way of hydrating — fresh, flavorful, and full of wellness. Join thousands who have already made the switch. Drink smart. Drink Daily Waters.</li>
+                </ul>
+                </div>
         </div>
         </div>
         <div class="bg-[#e1e5e3] text-[#1a2e44]">

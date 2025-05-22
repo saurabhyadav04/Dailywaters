@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { assets } from '../assets/assets';
 import { useAppContext } from '../context/AppContext';
@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null); 
+
   const {
     user,
     setUser,
@@ -48,6 +50,26 @@ const Navbar = () => {
     setIsProductDropdownOpen(false);
   };
 
+  // ⬇️ Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsProductDropdownOpen(false);
+      }
+    };
+
+    if (isProductDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isProductDropdownOpen]);
+
   return (
     <header className="flex items-center justify-between px-5 py-3 bg-gradient-to-r from-[#0f2a1a] via-[#2a4a2a] to-[#0f2a1a] flex-wrap md:flex-nowrap relative z-20">
       {/* Logo */}
@@ -59,7 +81,7 @@ const Navbar = () => {
 
       {/* Hamburger and Cart Icons (Mobile) */}
       <div className="flex items-center gap-4 md:hidden">
-          <div onClick={() => navigate('/cart')} className="relative cursor-pointer px-3">
+        <div onClick={() => navigate('/cart')} className="relative cursor-pointer px-3">
           <img src={assets.nav_cart_icon} alt="cart" className="w-6 opacity-80" />
           <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">
             {getCartCount()}
@@ -79,8 +101,6 @@ const Navbar = () => {
             />
           </svg>
         </button>
-
-      
       </div>
 
       {/* Navigation */}
@@ -91,7 +111,6 @@ const Navbar = () => {
           mobileMenuOpen ? 'flex' : 'hidden'
         } md:flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-[30px] w-full md:w-auto text-left md:text-center bg-[#0f2a1a] md:bg-transparent px-2 py-2 md:p-0 rounded-md absolute md:static top-full left-0 z-10`}
       >
-        {/* Mobile Search Bar */}
         {mobileMenuOpen && (
           <div className="w-full px-4 py-2 mb-4 bg-[#0f2a1a]">
             <input
@@ -103,16 +122,18 @@ const Navbar = () => {
           </div>
         )}
 
-        <NavLink to="/" onClick={() => setMobileMenuOpen(false)} className="text-white font-normal text-[16px] tracking-wide">
-          HOME
-        </NavLink>
+        <NavLink
+          to="/"
+          onClick={() => setMobileMenuOpen(false)}
+          className="text-white font-normal text-[16px] tracking-wide transform transition-transform duration-200 hover:scale-110">HOME</NavLink>
+
 
         {/* Dropdown for Products */}
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
           <button
             tabIndex="0"
             onClick={handleProductClick}
-            className="flex items-center gap-1 text-white font-normal text-[16px] tracking-wide focus:outline-none"
+            className="text-white font-normal text-[16px] tracking-wide transform transition-transform duration-200 hover:scale-110 flex items-center gap-1 text-white font-normal text-[16px] tracking-wide focus:outline-none"
           >
             PRODUCTS
             <svg className="w-4 h-4 mt-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,28 +141,28 @@ const Navbar = () => {
             </svg>
           </button>
 
-          {/* Dropdown Menu */}
           <div
             className={`absolute left-0 mt-2 w-48 bg-white text-black rounded shadow-lg transition-opacity z-30 ${
               isProductDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
             }`}
           >
-            <NavLink to="/products" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100">All Products</NavLink>
-            <NavLink to="/blue-harmony" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100">Blue Harmony</NavLink>
-            <NavLink to="/gut-well" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100">Gut Well</NavLink>
-            <NavLink to="/red-wellness"onClick={() => setIsProductDropdownOpen(false)}  className="block px-4 py-2 hover:bg-gray-100">Red Wellness</NavLink>
-            <NavLink to="/uric-sugar-detox" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100">Uric + Sugar Detox</NavLink>
+            <NavLink to="/products" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 transform transition-transform duration-200 hover:scale-110">All Products</NavLink>
+            <NavLink to="/blue-harmony" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 transform transition-transform duration-200 hover:scale-110">Blue Harmony</NavLink>
+            <NavLink to="/gut-well" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 transform transition-transform duration-200 hover:scale-110">Gut Well</NavLink>
+            <NavLink to="/red-wellness" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 transform transition-transform duration-200 hover:scale-110">Red Wellness</NavLink>
+            <NavLink to="/uric-sugar-detox" onClick={() => setIsProductDropdownOpen(false)} className="block px-4 py-2 hover:bg-gray-100 transform transition-transform duration-200 hover:scale-110">Uric + Sugar Detox</NavLink>
           </div>
         </div>
-        <NavLink to="/our-story" onClick={() => setMobileMenuOpen(false)} className="text-white font-normal text-[16px] tracking-wide">
+
+        <NavLink to="/our-story" onClick={() => setMobileMenuOpen(false)}  className="text-white font-normal text-[16px] tracking-wide transform transition-transform duration-200 hover:scale-110">
           OUR STORY
         </NavLink>
-        <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-white font-normal text-[16px] tracking-wide">
+        <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}  className="text-white font-normal text-[16px] tracking-wide transform transition-transform duration-200 hover:scale-110">
           CONTACT US
         </NavLink>
       </nav>
 
-      {/* Cart and Search (hidden on small screens) */}
+      {/* Cart and Search (Desktop) */}
       <div className="hidden lg:flex items-center gap-6">
         <div className="flex items-center text-sm gap-2 border border-white px-3 rounded-full ml-4">
           <input
@@ -169,7 +190,8 @@ const Navbar = () => {
             </ul>
           </div>
         )}
-        {!user ? (
+
+        {!user && (
           <button
             onClick={() => {
               setMobileMenuOpen(false);
@@ -179,8 +201,6 @@ const Navbar = () => {
           >
             Login
           </button>
-        ) : (
-          <></>
         )}
       </div>
     </header>

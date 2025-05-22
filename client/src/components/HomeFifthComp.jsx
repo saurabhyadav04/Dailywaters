@@ -5,7 +5,7 @@ import enjoy from "../Images/enjoy.png";
 import video from '../Images/video.gif'
 function HomeFifthComp() {
   return (
-  <div class="m-0 p-0 bg-[#042f6f] h-screen flex justify-center items-center min-h-full">
+  <div class="m-0 p-0 bg-[#042f6f] h-[100vh] sm:h-[60vh] flex justify-center items-center">
   <div role="main" aria-label="Open Infuse Enjoy interactive section"
     class="w-[90vw] max-w-full h-[300px] flex items-center justify-center gap-[60px] flex-col sm:flex-row sm:h-[300px]">
     <div class="flex-1 flex justify-center items-center">

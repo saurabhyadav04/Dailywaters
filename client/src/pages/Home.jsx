@@ -22,8 +22,7 @@ const Home = () => {
       <HomeThirdComp/>
       <HomeFifthComp/>
       <HomeFourthComp/>
-      {/* <Categories /> */}
-      {/* <BestSeller /> */}
+      
     </>
   )
 }
